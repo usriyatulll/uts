@@ -35,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
               height: 20,
             ),
             Text(
-              "Flutter CRUD App",
+              " App Manajemen Catatan Keuangan",
               style: TextStyle(
                 fontSize: 18.0,
                 color: Colors.black,

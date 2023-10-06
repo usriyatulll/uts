@@ -11,7 +11,8 @@ class HomePage extends StatelessWidget {
         title: const Text('Home Page'),
       ),
       drawer: const SideMenu(),
-      body: const Center(child: Text('selamat datang')),
+      body: const Center(
+          child: Text('Selamat Datang di Aplikasi Manajemen Catatan Keuangan')),
     );
   }
 }

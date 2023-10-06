@@ -4,11 +4,14 @@ import 'package:uts/list_data.dart';
 
 class EditData extends StatefulWidget {
   final String id;
-  final String nama;
-  final String jurusan;
+  final String deskripsi_transaksi;
+  final String jumlah;
 
   const EditData(
-      {Key? key, required this.id, required this.nama, required this.jurusan})
+      {Key? key,
+      required this.id,
+      required this.deskripsi_transaksi,
+      required this.jumlah})
       : super(key: key);
 
   @override
@@ -16,17 +19,17 @@ class EditData extends StatefulWidget {
 }
 
 class _EditDataState extends State<EditData> {
-  final namaController = TextEditingController();
-  final jurusanController = TextEditingController();
+  final deskripsiTransaksiController = TextEditingController();
+  final jumlahController = TextEditingController();
 
   Future<bool> editData(String id) async {
     // String url = Platform.isAndroid
     //     ? 'http://10.100.0.144/api/index.php'
     //     : 'http://localhost/api/index.php';
-    String url = "http://192.168.1.12:8080/pemob1/index.php";
+    String url = "http://192.168.43.17:8080/uts/index.php";
     Map<String, String> headers = {'Content-Type': 'application/json'};
     String jsonBody =
-        '{"id": "${widget.id}", "nama": "${namaController.text}", "jurusan": "${jurusanController.text}"}';
+        '{"id": "${widget.id}", "deskripsi_transaksi": "${deskripsiTransaksiController.text}", "jumlah": "${jumlahController.text}"}';
     var response =
         await http.put(Uri.parse(url), body: jsonBody, headers: headers);
     if (response.statusCode == 200) {
@@ -43,8 +46,9 @@ class _EditDataState extends State<EditData> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    namaController.value = TextEditingValue(text: widget.nama);
-    jurusanController.value = TextEditingValue(text: widget.jurusan);
+    deskripsiTransaksiController.value =
+        TextEditingValue(text: widget.deskripsi_transaksi);
+    jumlahController.value = TextEditingValue(text: widget.jumlah);
   }
 
   @override
@@ -59,15 +63,15 @@ class _EditDataState extends State<EditData> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextField(
-              controller: namaController,
+              controller: deskripsiTransaksiController,
               decoration: const InputDecoration(
-                hintText: 'Nama Mahasiswa',
+                hintText: 'Deskripsi Transaksi',
               ),
             ),
             TextField(
-              controller: jurusanController,
+              controller: jumlahController,
               decoration: const InputDecoration(
-                hintText: 'Jurusan',
+                hintText: 'Jumlah',
               ),
             ),
             ElevatedButton(

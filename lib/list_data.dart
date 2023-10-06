@@ -17,11 +17,11 @@ class ListData extends StatefulWidget {
 }
 
 class _ListDataState extends State<ListData> {
-  List<Map<String, String>> dataMahasiswa = [];
+  List<Map<String, String>> dataTransaksi = [];
   // String url = Platform.isAndroid
   //     ? 'http://192.168.1.12:8080/pemob1/index.php'
   //     : 'http://localhost/pemob1/index.php';
-  String url = "http://192.168.1.12:8080/pemob1/index.php";
+  String url = "http://192.168.43.17:8080/uts/index.php";
   @override
   void initState() {
     super.initState();
@@ -33,10 +33,10 @@ class _ListDataState extends State<ListData> {
     if (response.statusCode == 200) {
       final List<dynamic> data = json.decode(response.body);
       setState(() {
-        dataMahasiswa = List<Map<String, String>>.from(data.map((item) {
+        dataTransaksi = List<Map<String, String>>.from(data.map((item) {
           return {
-            'nama': item['nama'] as String,
-            'jurusan': item['jurusan'] as String,
+            'deskripsi_transaksi': item['deskripsi_transaksi'] as String,
+            'jumlah': item['jumlah'] as String,
             'id': item['id'] as String,
           };
         }));
@@ -59,7 +59,7 @@ class _ListDataState extends State<ListData> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('List Data Mahasiswa'),
+        title: const Text('List Data Transaksi'),
       ),
       drawer: const SideMenu(),
       body: Column(children: <Widget>[
@@ -72,15 +72,15 @@ class _ListDataState extends State<ListData> {
               ),
             );
           },
-          child: const Text('Tambah Data Mahasiswa'),
+          child: const Text('Tambah Data Transaksi'),
         ),
         Expanded(
           child: ListView.builder(
-            itemCount: dataMahasiswa.length,
+            itemCount: dataTransaksi.length,
             itemBuilder: (context, index) {
               return ListTile(
-                title: Text(dataMahasiswa[index]['nama']!),
-                subtitle: Text('Jurusan: ${dataMahasiswa[index]['jurusan']}'),
+                title: Text(dataTransaksi[index]['deskripsi_transaksi']!),
+                subtitle: Text('Jumlah: ${dataTransaksi[index]['jumlah']}'),
                 trailing: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
@@ -89,30 +89,32 @@ class _ListDataState extends State<ListData> {
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => ReadData(
-                                id: dataMahasiswa[index]['id'].toString(),
-                                nama: dataMahasiswa[index]['nama'] as String,
-                                jurusan: dataMahasiswa[index]['jurusan']
-                                    as String)));
-                        //editMahasiswa(index);
+                                id: dataTransaksi[index]['id'].toString(),
+                                deskripsi_transaksi: dataTransaksi[index]
+                                    ['deskripsi_transaksi'] as String,
+                                jumlah:
+                                    dataTransaksi[index]['jumlah'] as String)));
+                        //editTransaksi(index);
                       },
                     ),
                     IconButton(
                       icon: const Icon(Icons.edit),
                       onPressed: () {
-                        // lihatMahasiswa(aindex);
+                        // lihatTransaksi(aindex);
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => EditData(
-                                id: dataMahasiswa[index]['id'].toString(),
-                                nama: dataMahasiswa[index]['nama'] as String,
-                                jurusan: dataMahasiswa[index]['jurusan']
-                                    as String)));
-                        //editMahasiswa(index);
+                                id: dataTransaksi[index]['id'].toString(),
+                                deskripsi_transaksi: dataTransaksi[index]
+                                    ['deskripsi_transaksi'] as String,
+                                jumlah:
+                                    dataTransaksi[index]['jumlah'] as String)));
+                        //editTransaksi(index);
                       },
                     ),
                     IconButton(
                       icon: const Icon(Icons.delete),
                       onPressed: () {
-                        deleteData(int.parse(dataMahasiswa[index]['id']!))
+                        deleteData(int.parse(dataTransaksi[index]['id']!))
                             .then((result) {
                           if (result['pesan'] == 'berhasil') {
                             showDialog(

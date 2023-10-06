@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      title: 'Unsoed App CRUD',
+      title: 'Manajemen Catatan Keuangan',
       home: SplashScreen(),
     );
   }

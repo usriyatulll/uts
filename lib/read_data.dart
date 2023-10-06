@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 
 class ReadData extends StatelessWidget {
   final String id;
-  final String nama;
-  final String jurusan;
+  final String deskripsi_transaksi;
+  final String jumlah;
 
   const ReadData(
-      {Key? key, required this.id, required this.nama, required this.jurusan})
+      {Key? key,
+      required this.id,
+      required this.deskripsi_transaksi,
+      required this.jumlah})
       : super(key: key);
 
   @override
@@ -30,14 +33,14 @@ class ReadData extends StatelessWidget {
               height: 10,
             ), // Add some spacing between the text widgets
             Text(
-              'Nama: $nama',
+              'Deskripsi Transaksi: $deskripsi_transaksi',
               style: const TextStyle(
                 fontSize: 16, // Adjust the font size as needed
               ),
             ),
             const SizedBox(height: 5), // Add a smaller spacing
             Text(
-              'Jurusan: $jurusan',
+              'Jumlah: $jumlah',
               style: const TextStyle(
                 fontSize: 16, // Adjust the font size as needed
               ),
