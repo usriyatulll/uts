@@ -1,4 +1,5 @@
-import 'package:uts/splash.dart';
+import 'package:uts/login_page.dart';
+// import 'package:uts/splash.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'Manajemen Catatan Keuangan',
-      home: SplashScreen(),
+      home: LoginPage(),
     );
   }
 }

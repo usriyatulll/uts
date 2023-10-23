@@ -1,6 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -19,10 +20,10 @@ class _TambahDataState extends State<TambahData> {
   final jumlahController = TextEditingController();
 
   Future postData(String deskripsi_transaksi, String jumlah) async {
-    // String url = Platform.isAndroid
-    //     ? 'http://10.100.0.144/api/index.php'
-    //     : 'http://localhost/api/index.php';
-    String url = "http://192.168.43.17:8080/uts/index.php";
+    String url = Platform.isAndroid
+        ? 'http://192.168.36.70:8080/uts/index.php'
+        : 'http://localhost/uts/index.php';
+    // String url = "http://169.254.21.151/uts/index.php";
     Map<String, String> headers = {'Content-Type': 'application/json'};
     String jsonBody =
         '{"deskripsi_transaksi": "$deskripsi_transaksi", "jumlah": "$jumlah"}';

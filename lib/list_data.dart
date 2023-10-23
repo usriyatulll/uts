@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -18,10 +19,10 @@ class ListData extends StatefulWidget {
 
 class _ListDataState extends State<ListData> {
   List<Map<String, String>> dataTransaksi = [];
-  // String url = Platform.isAndroid
-  //     ? 'http://192.168.1.12:8080/pemob1/index.php'
-  //     : 'http://localhost/pemob1/index.php';
-  String url = "http://192.168.43.17:8080/uts/index.php";
+  String url = Platform.isAndroid
+      ? 'http://192.168.36.70:8080/uts/index.php'
+      : 'http://localhost:8080/uts/index.php';
+  // String url = "http://169.254.21.151:8080/uts/index.php";
   @override
   void initState() {
     super.initState();
